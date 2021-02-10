@@ -99,22 +99,23 @@ namespace ProblematicProblem
                 string randomActivity = activities[randomNumber];
 
 
-                if (userAge > 21 && randomActivity == "Wine Tasting")
+                if (userAge < 21 && randomActivity == "Wine Tasting")
                 {
                     
-                    Console.WriteLine($"Oh no! Looks like you are too young to do {randomActivity}");
+                    Console.WriteLine($"Oh no! Looks like you are too young to do {activities[7]}");
                     Console.WriteLine("Pick something else!");
 
-                    activities.Remove(randomActivity);
+                    activities.Remove(activities[7]);
 
-                    string randomNumber = rng.Next(activities.Count);
+                    randomNumber = rng.Next(activities.Count);
 
-                    string randomActivity = activities[randomNumber];
+                    string newRandomActivity = activities[randomNumber];
+                    randomActivity = activities[randomNumber];
                 }
 
-                Console.Write($"Ah got it! {randomActivity}, your random activity is: {userName}! Is this ok or do you want to grab another activity? Keep/Redo: ");
+                Console.Write($"Ah got it! {userName}, your random activity is: {randomActivity}! Is this ok or do you want to grab another activity? Keep/Redo: ");
                 Console.WriteLine();
-                cont = bool.Parse(Console.ReadLine());
+                cont = (Console.ReadLine().ToLower() == "keep") ? true : false;
             }
         }
     }
